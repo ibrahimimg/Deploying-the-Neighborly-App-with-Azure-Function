@@ -11,7 +11,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             url = os.environ['MyMongoDB_conn']
             client = pymongo.MongoClient(url)
             database = client['azure']
-            collection = database['advertisements']
+            collection = database['posts']
 
             rec_id1 = collection.insert_one(eval(request))
 

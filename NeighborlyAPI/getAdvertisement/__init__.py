@@ -1,9 +1,11 @@
 import azure.functions as func
 import pymongo
 import json
+import logging
+import os
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-import logging
+
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
 
@@ -14,17 +16,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     if id:
         try:
-            url = "localhost"  # TODO: Update with appropriate MongoDB connection information
+            url = os.environ['MyMongoDB_conn']
             client = pymongo.MongoClient(url)
             database = client['azure']
             collection = database['advertisements']
            
             query = {'_id': ObjectId(id)}
             result = collection.find_one(query)
-            print("----------result--------")
+            #print("----------result--------")
 
             result = dumps(result)
-            print(result)
+            #print(result)
 
             return func.HttpResponse(result, mimetype="application/json", charset='utf-8')
         except:

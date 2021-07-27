@@ -1,0 +1,209 @@
+data:
+  FUNCTIONS_WORKER_RUNTIME: cHl0aG9u
+  AzureWebJobsStorage: RGVmYXVsdEVuZHBvaW50c1Byb3RvY29sPWh0dHBzO0FjY291bnROYW1lPWlnbmVpZ2hib3JseTtBY2NvdW50S2V5PTZ5UFR5NTJqQU8wbHIzK0V1ZG1URkx3bENxYXVKdTA4RDVFTzZDS1NuVmdPYTd2aThUbjZHaTgrVUFBaVBxQVlLUURINmFvSld5aFdqMGQ0a3R6Z0hBPT07RW5kcG9pbnRTdWZmaXg9Y29yZS53aW5kb3dzLm5ldA==
+  FUNCTIONS_EXTENSION_VERSION: fjM=
+  APPINSIGHTS_INSTRUMENTATIONKEY: ZDU1NzVlZjYtNjcxMS00MmZlLWI3ZjQtNTJjZTI2ZmE5NGNi
+  MyMongoDB_conn: bW9uZ29kYjovL2lndWRhY2l0eTpSemZLTktIMFRtSGhZaG5hMkxCeFpja1NYRmxtTlVvbW5lMFJmd1BJUWtMS1NvZ2JXVElIZHRVTXlMa2hDT3RMS0xVcGp4UDdOWWNkQjdoaGM0bEtHUSUzRCUzREBpZ3VkYWNpdHkubW9uZ28uY29zbW9zLmF6dXJlLmNvbToxMDI1NS8/c3NsPXRydWUmcmVwbGljYVNldD1nbG9iYWxkYiZyZXRyeXdyaXRlcz1mYWxzZSZtYXhJZGxlVGltZU1TPTEyMDAwMCZhcHBOYW1lPUBpZ3VkYWNpdHlA
+  connection: RW5kcG9pbnQ9c2I6Ly9pZ25laWdoYm9ybHkuc2VydmljZWJ1cy53aW5kb3dzLm5ldC87U2hhcmVkQWNjZXNzS2V5TmFtZT1teXBvbGljeTtTaGFyZWRBY2Nlc3NLZXk9WTJackc4N3VlZ3lXU0R2Uk96VkZMTnd5NjI3OEpobGVFTkZjVHFHTkR0VT07RW50aXR5UGF0aD10ZXN0aHVi
+apiVersion: v1
+kind: Secret
+metadata:
+  name: udacityproject2aks
+---
+data:
+  host.master: MzlnOTVienJtVlNpUE1rcHRIQ0F5WGJrM3dFWGNNQmxYdGhXRmFUM3lQR2l2NTA0WVFqTzRRPT0=
+  host.function.default: cmIzM0dBZVFYL2lXS1BOUFdjZTJVRS9IMGRZcVRid0JUb2lUZ0Z3V2NHYW5NRm9OMFlxSXB3PT0=
+  host.systemKey.default: QWwxeFFEQ0FiNTZOcGQwaTNSdmZ3cm1ybHJlNGowUTloVU1wb2FuTi9nbklhYTJRdmY1WlBBPT0=
+  functions.createadvertisement.default: MjRQV2VQUHhqU041Uk1PYTRlZUxGMmNpSHB0Z2hRT3hjZUtBbXBJc0dBN2wxYUlldlFSUExBPT0=
+  functions.createpost.default: WnFBODlpekFZUHlyUTBjZWh3bUp2c3lhRFgzUHFoQjdDai9mZXZyaGl4bG1MZHNmalpmMnhBPT0=
+  functions.deleteadvertisement.default: L3l6WHE4Y2Q1dG9JZ3FDanFhT0RsZXJ5SzFSZi9pcDFWblBHbUxBQmFJMkJpZlF0bzhYRVN3PT0=
+  functions.deletepost.default: QWcyOTQwWGRvWTFwZFZVaFFBNTlZdEI4UlRqOVVMZ3pTaUVsY09OQUVDL2xaRjBxT0pZdGdRPT0=
+  functions.getadvertisement.default: bUVzUC9CaEFpdnRnWGFIVzhjQUxSWmpZejNDRGVUVG8zdkhGVXY2dklKODhEWHZrQi9JOGFBPT0=
+  functions.getadvertisements.default: SnNpWEE1TUZmaEFYQnZTQ2F5QjFRNVBoWXIzQjNOeE1hbXRKQlJoMmtNUi85T0V0SDIwMG53PT0=
+  functions.getpost.default: aGkyY2Z4endYR2JaVUh6bTgxaFM0Vy9GWFFoeVBGMGs1bzUvY3ZrL1JSSlNXL1ZjU3pUVUF3PT0=
+  functions.getposts.default: ejR5SDZFNWRVYUxVYU9sMVA4ZU8yWmRhYTNJMzJqRDZoYjBZMUk1eldkTk1sMDhiMUZSUUtnPT0=
+  functions.updateadvertisement.default: Y2R5UTRLRFpMNm5ScXcybmk5d3AzRXpKZ2hhQjlWMzJGTFV1bjVKbmV6a0JxZld2YWFFMlF3PT0=
+  functions.updatepost.default: Z2JRaHRIWjVHQThmQ0daajZualBmZUdYeWRGTmxvY1pWeU5lT1F6eGxLR01mYTVkVkhKVWV3PT0=
+apiVersion: v1
+kind: Secret
+metadata:
+  name: func-keys-kube-secret-udacityproject2aks
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: udacityproject2aks-function-keys-identity-svc-act
+---
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - secrets
+  - configMaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: functions-keys-manager-role
+---
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: functions-keys-manager-role
+subjects:
+- kind: ServiceAccount
+  name: udacityproject2aks-function-keys-identity-svc-act
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: udacityproject2aks-function-keys-identity-svc-act-functions-keys-manager-rolebinding
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udacityproject2aks-http
+spec:
+  selector:
+    app: udacityproject2aks-http
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacityproject2aks-http
+  labels:
+    app: udacityproject2aks-http
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udacityproject2aks-http
+  template:
+    metadata:
+      labels:
+        app: udacityproject2aks-http
+    spec:
+      containers:
+      - name: udacityproject2aks-http
+        image: udacityproject2acr.azurecr.io/neighborly:v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: AzureFunctionsJobHost__functions__0
+          value: createAdvertisement
+        - name: AzureFunctionsJobHost__functions__1
+          value: createPost
+        - name: AzureFunctionsJobHost__functions__2
+          value: deleteAdvertisement
+        - name: AzureFunctionsJobHost__functions__3
+          value: deletePost
+        - name: AzureFunctionsJobHost__functions__4
+          value: getAdvertisement
+        - name: AzureFunctionsJobHost__functions__5
+          value: getAdvertisements
+        - name: AzureFunctionsJobHost__functions__6
+          value: getPost
+        - name: AzureFunctionsJobHost__functions__7
+          value: getPosts
+        - name: AzureFunctionsJobHost__functions__8
+          value: updateAdvertisement
+        - name: AzureFunctionsJobHost__functions__9
+          value: updatePost
+        - name: AzureWebJobsSecretStorageType
+          value: kubernetes
+        - name: AzureWebJobsKubernetesSecretName
+          value: secrets/func-keys-kube-secret-udacityproject2aks
+        envFrom:
+        - secretRef:
+            name: udacityproject2aks
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+      serviceAccountName: udacityproject2aks-function-keys-identity-svc-act
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacityproject2aks
+  labels:
+    app: udacityproject2aks
+spec:
+  selector:
+    matchLabels:
+      app: udacityproject2aks
+  template:
+    metadata:
+      labels:
+        app: udacityproject2aks
+    spec:
+      containers:
+      - name: udacityproject2aks
+        image: udacityproject2acr.azurecr.io/neighborly:v1
+        env:
+        - name: AzureFunctionsJobHost__functions__0
+          value: eventHubTrigger
+        envFrom:
+        - secretRef:
+            name: udacityproject2aks
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+      serviceAccountName: udacityproject2aks-function-keys-identity-svc-act
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: udacityproject2aks
+  labels: {}
+spec:
+  scaleTargetRef:
+    name: udacityproject2aks
+  triggers:
+  - type: eventgridtrigger
+    metadata:
+      direction: in
+      eventHubName: testhub
+      connection: connection
+---
+
