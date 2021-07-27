@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="panel-title ml-2">
+                <h1 class="mr-2">{{post.title}}</h1>
+            </div>
+            <p class="text-muted">Description: {{ post.description }}</p>
+            <p><img class="img-small" width="200" src={{post.imgUrl}}></p>
+        </div><!-- end panel body -->
+        <div>
+            <p>Published On: {{ post.publishedDate}}</p>
+            <a class="btn btn-warning btn-xs" href="/">Back to post list</a>
+        </div>
+     </div><!-- end panel  -->
+</div>
+{% endblock %}
+
+
+
