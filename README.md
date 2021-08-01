@@ -3,8 +3,10 @@
 ## Project Overview
 Building and deploying cloud native applications:
 
-In this project, we are going to build an app called "Neighborly". Neighborly is a Python Flask-powered web application that allows neighbors to post advertisements for services and products they can offer.
-The Neighborly project is comprised of a front-end application that is built with the Python Flask micro framework. The application allows the user to view, create, edit, and delete the community advertisements.
+In this project, we are going to build an app called "Neighborly" using microservice architecture. Microservices are an architectural approach to building applications where each core function, or service, is built and deployed independently.
+
+Neighborly is a Python Flask-powered web application that allows neighbors to post advertisements for services and products they can offer.
+The project is comprised of a front-end application that is built with the Python Flask micro framework. It allows the user to view, create, edit, and delete the community advertisements.
 
 The application makes direct requests to the back-end API endpoints.
 
