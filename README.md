@@ -6,9 +6,7 @@ Building and deploying cloud native applications:
 In this project, we are going to build an app called "Neighborly" using microservice architecture. Microservices are an architectural approach to building applications where each core function, or service, is built and deployed independently.
 
 Neighborly is a Python Flask-powered web application that allows neighbors to post advertisements for services and products they can offer.
-The project is comprised of a front-end application that is built with the Python Flask micro framework. It allows the user to view, create, edit, and delete the community advertisements.
-
-The application makes direct requests to the back-end API endpoints.
+The project is comprised of a front-end application that is built with the Python Flask micro framework. It allows the user to view, create, edit, and delete the community advertisements. The application makes direct requests to the back-end API endpoints.
 
 You can see an example of the deployed app below.
 
@@ -42,13 +40,13 @@ brew install azure-functions-core-tools@3
 
 In case you need to return to the project later on, it is suggested to store any commands you use so you can re-create your work.
 
-### I. Creating Azure Function App [x]
+### I. Creating Azure Function App 
 
 We need to set up the Azure resource group, region, storage account, and an app name before we can publish.
 
-1. Create a resource group.
-2. Create a storage account (within the previously created resource group and region).
-3. Create an Azure Function App within the resource group, region and storage account. 
+1. [x] Create a resource group.
+2. [x] Create a storage account (within the previously created resource group and region).
+3. [x] Create an Azure Function App within the resource group, region and storage account. 
    - Note that app names need to be unique across all of Azure.
    - Make sure it is a Linux app, with a Python runtime.
 
@@ -58,10 +56,10 @@ We need to set up the Azure resource group, region, storage account, and an app 
     Your Linux function app 'myneighborlyapiv1', that uses a consumption plan has been successfully created but is not active until content is published using Azure Portal or the Functions Core Tools.
     ```
 
-4. Set up a Cosmos DB Account. You will need to use the same resource group, region and storage account, but can name the Cosmos DB account as you prefer. **Note:** This step may take a little while to complete (15-20 minutes in some cases).
+4. [x] Set up a Cosmos DB Account. You will need to use the same resource group, region and storage account, but can name the Cosmos DB account as you prefer. **Note:** This step may take a little while to complete (15-20 minutes in some cases).
 
-5. Create a MongoDB Database in CosmosDB Azure and two collections, one for `advertisements` and one for `posts`.
-6. Print out your connection string or get it from the Azure Portal. Copy/paste the **primary connection** string.  You will use it later in the application.
+5. [x] Create a MongoDB Database in CosmosDB Azure and two collections, one for `advertisements` and one for `posts`.
+6. [x] Print out your connection string or get it from the Azure Portal. Copy/paste the **primary connection** string.  You will use it later in the application.
 
     Example connection string output:
     ```bash
@@ -83,7 +81,7 @@ We need to set up the Azure resource group, region, storage account, and an app 
     }
     ```
 
-7. Import Sample Data Into MongoDB.
+7. [x] Import Sample Data Into MongoDB.
    - Download dependencies:
         ```bash
         # get the mongodb library
@@ -107,7 +105,7 @@ We need to set up the Azure resource group, region, storage account, and an app 
         2020-05-18T23:30:42.260-0400  4 document(s) imported successfully. 0 document(s) failed to import.
         ```
     ![Azure CosmosDB](screenshots/1.1%20Azure%20cosmosdb%20-%20portal.png)
-8. Hook up your connection string into the NeighborlyAPI server folder. You will need to replace the *url* variable with your own connection string you copy-and-pasted in the last step, along with some additional information.
+8. [x] Hook up your connection string into the NeighborlyAPI server folder. You will need to replace the *url* variable with your own connection string you copy-and-pasted in the last step, along with some additional information.
     - Tip: Check out [this post](https://docs.microsoft.com/en-us/azure/cosmos-db/connect-mongodb-account) if you need help with what information is needed.
     - Go to each of the `__init__.py` files in getPosts, getPost, getAdvertisements, getAdvertisement, deleteAdvertisement, updateAdvertisement, createAdvertisements and replace your connection string. You will also need to set the related `database` and `collection` appropriately.
 
@@ -136,7 +134,7 @@ We need to set up the Azure resource group, region, storage account, and an app 
 
     Make sure to do the same step for the other 9 HTTP Trigger functions.
 
-9. Deploy your Azure Functions.
+9. [x] Deploy your Azure Functions.
 
     1. Test it out locally first.
 
@@ -214,7 +212,7 @@ We need to set up the Azure resource group, region, storage account, and an app 
 
         Save the function app url **https://igneighborly.azurewebsites.net/api/** since you will need to update that in the client-side of the application.
 
-### II. Deploying the client-side Flask web application [x]
+### II. Deploying the client-side Flask web application
 
 We are going to update the Client-side `settings.py` with published API endpoints. First navigate to the `settings.py` file in the NeighborlyFrontEnd/ directory.
 
@@ -230,9 +228,9 @@ Use a text editor to update the API_URL to your published url from the last step
 API_URL="https://igneighborly.azurewebsites.net/api"
 ```
 
-### III. CI/CD Deployment [x]
+### III. CI/CD Deployment
 
-1. Deploy your client app. **Note:** Use a **different** app name here to deploy the front-end, or else you will erase your API. From within the `NeighborlyFrontEnd` directory:
+1. [x] Deploy your client app. **Note:** Use a **different** app name here to deploy the front-end, or else you will erase your API. From within the `NeighborlyFrontEnd` directory:
     - Install dependencies with `pipenv install`
     - Go into the pip env shell with `pipenv shell`
     - Deploy your application to the app service. **Note:** It may take a minute or two for the front-end to get up and running if you visit the related URL.
@@ -242,23 +240,22 @@ API_URL="https://igneighborly.azurewebsites.net/api"
     App link: https://myneighborlyapp.azurewebsites.net/
     ![Deployed app](screenshots/3.1%20Neighborly%20app%20-%20live.png)
 
-2. Create an Azure Registry and dockerize your Azure Functions. Then, push the container to the Azure Container Registry.
+2. [x] Create an Azure Registry and dockerize your Azure Functions. Then, push the container to the Azure Container Registry.
 ![Docker build and push](screenshots/3.2.1%20docker%20build%20and%20push.png)
 ![Azure container registry](screenshots/3.2.2%20Azure%20Container%20registry%20-%20portal.png)
-3. Create a Kubernetes cluster, and verify your connection to it with `kubectl get nodes`.
-4. Deploy app to Kubernetes, and check your deployment with `kubectl config get-contexts`.
+3. [x] Create a Kubernetes cluster, and verify your connection to it with `kubectl get nodes`.
+4. [x] Deploy app to Kubernetes, and check your deployment with `kubectl config get-contexts`.
 
 ![Azure kubernetes](screenshots/3.3%20Azure%20kubernetes.png)
 
-### IV. Event Hubs and Logic App [x]
-
-1. Create a Logic App that watches for an HTTP trigger. When the HTTP request is triggered, send yourself an email notification.
+### IV. Event Hubs and Logic App
+1. [x] Create a Logic App that watches for an HTTP trigger. When the HTTP request is triggered, send yourself an email notification.
 ![Azure Logic Apps](screenshots/2.1%20Logic%20apps.png)
-2. Create a namespace for event hub in the portal. You should be able to obtain the namespace URL.
+2. [x] Create a namespace for event hub in the portal. You should be able to obtain the namespace URL.
 ![Event hub namespace](screenshots/2.2%20Event-hub.png)
-3. Add the connection string of the event hub to the Azure Function.
+3. [x] Add the connection string of the event hub to the Azure Function.
 
-### V.  Cleaning Up Your Services [x]
+### V.  Cleaning Up Your Services
 
 Before completing this step, make sure to have taken all necessary screenshots for the project! Check the rubric in the classroom to confirm.
 
